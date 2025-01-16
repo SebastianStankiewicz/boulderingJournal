@@ -32,8 +32,15 @@
           "resizeMode": "contain",
           "backgroundColor": "#ffffff"
         }
+      ],
+      [
+        "expo-font",
+        {
+          "fonts": ["./assets/fonts/Futura-Bold.ttf"]
+        }
       ]
     ],
+    
     "experiments": {
       "typedRoutes": true
     }

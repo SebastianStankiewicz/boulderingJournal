@@ -17,11 +17,11 @@ const TabIcon = ({
     <Ionicons
       name={iconName}
       size={20}
-      color={focused ? "#0061ff" : "#66876"}
+      color={focused ? "#6f2dbd" : "#66876"}
     />
     <Text
       className={`${
-        focused ? "text-primary-300" : "text-black-200"
+        focused ? "text-regularFont-100" : "text-black-200"
       } text-xs w-full text-center mt-1`}
     >
       {title}
@@ -35,7 +35,7 @@ const TabsLayout = () => {
       screenOptions={{
         tabBarShowLabel: false,
         tabBarStyle: {
-          backgroundColor: "white",
+          backgroundColor: "#B5C99A",
           position: "absolute",
           borderTopColor: "#0061FF1A",
           borderTopWidth: 1,

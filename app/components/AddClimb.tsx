@@ -94,7 +94,7 @@ const styles = StyleSheet.create({
   },
   titleContainer: {
     height: "16%",
-    backgroundColor: "#464C55",
+    backgroundColor: "#B5C99A",
     borderTopRightRadius: 10,
     borderTopLeftRadius: 10,
     paddingHorizontal: 20,

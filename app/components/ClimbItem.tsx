@@ -14,7 +14,7 @@ const ClimbItem = ({
   return (
     <View
       className={`border rounded-lg p-4 mb-2 ${
-        success ? "border-green-500" : "border-red-500"
+        success ? "border-successGreen-100" : "border-red-500"
       }`}
     >
       <TouchableOpacity className="flex flex-row justify-evenly items-center">

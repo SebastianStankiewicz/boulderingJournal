@@ -1,4 +1,10 @@
-import { ScrollView, Text, TouchableOpacity, View } from "react-native";
+import {
+  ScrollView,
+  Text,
+  TouchableOpacity,
+  View,
+  TextInput,
+} from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import AddClimb from "@/app/components/AddClimb";
@@ -12,12 +18,15 @@ export default function Index() {
     useState<boolean>(false);
 
   const [selectedDate, setSelectedDate] = useState<any>(14);
-
+  const [note, setNote] = useState(
+    "A really solid workout with lots of progress made!"
+  );
+  const [isEditing, setIsEditing] = useState(false);
   return (
-    <SafeAreaView className="h-full bg-white">
+    <SafeAreaView className="h-full bg-primary-100">
       {/* Header */}
       <View className="flex flex-row items-center justify-between mt-5 px-2">
-        <Text className="text-4xl font-bold text-black-900">
+        <Text className="text-4xl font-futura text-regular Font-100">
           {Intl.DateTimeFormat("en-GB", {
             day: "2-digit",
             month: "long",
@@ -44,9 +53,39 @@ export default function Index() {
         contentContainerClassName="pb-32 px-7"
       >
         <View className="mt-5">
-          <Text className="text-3xl font-bold text-black-900">
-            Session notes
+          <Text className="text-3xl font-bold font-futura text-regularFont-100">
+            Notes
           </Text>
+          {isEditing ? (
+            <View>
+              <TextInput
+                value={note}
+                onChangeText={setNote}
+                onBlur={() => setIsEditing(false)} // When focus is lost, stop editing
+                autoFocus
+                className="font-futura text-regularFont-100"
+                multiline
+                style={{
+                  minHeight: 100,
+                  borderWidth: 1,
+                  borderColor: "#ccc",
+                  padding: 10,
+                }}
+              />
+              <View className="flex flex-row mt-5 justify-center">
+              <TouchableOpacity onPress={() => setIsEditing(false)}>
+                <Text className="font-futura text-white bg-purple-600 text-3xl py-2 px-4 rounded-lg shadow-md ">Save</Text>
+              </TouchableOpacity>
+              </View>
+
+            </View>
+          ) : (
+            <View className="font-futura text-regularFont-100">
+              <TouchableOpacity onPress={() => setIsEditing(true)}>
+                <Text>{note}</Text>
+              </TouchableOpacity>
+            </View>
+          )}
         </View>
 
         <View className="mt-5">
@@ -59,14 +98,6 @@ export default function Index() {
           <ClimbItem grade="V5" attempts={8} success={false} />
           <ClimbItem grade="V6" attempts={3} success={true} />
           <ClimbItem grade="V8" attempts={12} success={false} />
-          <ClimbItem grade="V7" attempts={5} success={true} />
-          <ClimbItem grade="V5" attempts={8} success={false} />
-          <ClimbItem grade="V6" attempts={3} success={true} />
-          <ClimbItem grade="V8" attempts={12} success={false} />
-          <ClimbItem grade="V7" attempts={5} success={true} />
-          <ClimbItem grade="V5" attempts={8} success={false} />
-          <ClimbItem grade="V6" attempts={3} success={true} />
-          <ClimbItem grade="V8" attempts={12} success={false} />
         </View>
       </ScrollView>
 
@@ -75,7 +106,7 @@ export default function Index() {
         {!isAddClimbOpen ? (
           // Floating "+" Button
           <TouchableOpacity
-            className="bg-purple-500 rounded-full w-16 h-16 flex items-center justify-center shadow-lg"
+            className="bg-buttonColor-100 rounded-full w-16 h-16 flex items-center justify-center shadow-lg"
             onPress={() => setIsAddClimbOpen(true)}
           >
             <Ionicons name="add" size={36} color="white" />

@@ -5,7 +5,7 @@ import { Calendar } from "react-native-calendars";
 const CalendarModal = ({setSelectedDay, setIsCalendarModalOpen}: {setSelectedDay: any, setIsCalendarModalOpen: any}) => {
   return (
     <Modal animationType="slide" transparent={true}>
-      <SafeAreaView className="flex-1 bg-white p-4">
+      <SafeAreaView className="flex-1 bg-primary-400 p-4">
         {/* Modal Header */}
         <View className="mb-4">
           <Text className="text-2xl font-bold text-black text-center">
@@ -43,8 +43,10 @@ const CalendarModal = ({setSelectedDay, setIsCalendarModalOpen}: {setSelectedDay
             textMonthFontWeight: 'bold', // Month name bold text
           }}
         />
-        <View>
-            <Text>Month Overview</Text>
+        <View className="mt-2 px-5">
+        <Text className="text-3xl font-bold text-black-900">
+            Month Overview
+          </Text>
         </View>
       </SafeAreaView>
     </Modal>
