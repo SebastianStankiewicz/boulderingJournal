@@ -6,7 +6,7 @@ import ClimbItem from "@/app/components/ClimbItem";
 import React, { useState } from "react";
 
 export default function Index() {
-  const [isAddClimbOpen, setIsAddClimbOpen] = useState(false); // State to toggle AddClimb visibility
+  const [isAddClimbOpen, setIsAddClimbOpen] = useState<boolean>(false); // State to toggle AddClimb visibility
 
   return (
     <SafeAreaView className="h-full bg-white">
@@ -16,13 +16,21 @@ export default function Index() {
       >
         {/* Header */}
         <View className="flex flex-row items-center justify-between mt-5">
-          <Text className="text-4xl font-bold text-black-900">January 14th</Text>
+          <Text className="text-4xl font-bold text-black-900">
+            January 14th
+          </Text>
           <TouchableOpacity>
-            <Ionicons name="information-circle" size={24} color="black" />
+            <Ionicons name="calendar" size={24} color="black" />
           </TouchableOpacity>
         </View>
 
+        <View className="mt-5">
+          <Text className="text-3xl font-bold text-black-900">Session notes</Text>
+        </View>
 
+        <View className="mt-5">
+          <Text className="text-3xl font-bold text-black-900">Climbs</Text>
+        </View>
 
         <View className="mt-10">
           {/* Example Climb Items */}
@@ -54,7 +62,7 @@ export default function Index() {
         ) : (
           // AddClimb Component
           <View className="bg-white p-4 rounded-lg shadow-lg">
-            <AddClimb />
+            <AddClimb onClose={() => setIsAddClimbOpen(false)} />
             {/* Close Button */}
             <TouchableOpacity
               className="absolute top-2 right-2 bg-gray-200 rounded-full p-2"

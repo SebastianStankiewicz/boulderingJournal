@@ -1,9 +1,17 @@
-import { View, Text, TouchableOpacity, ScrollView } from "react-native";
+import {
+  View,
+  Text,
+  TouchableOpacity,
+  Modal,
+  StyleSheet,
+  FlatList,
+} from "react-native";
 import React, { useState } from "react";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import ScrollPicker from "react-native-wheel-scrollview-picker";
+import MenuItem from "./addClimbComponents/MenuItem";
 
-const AddClimb = () => {
+const AddClimb = ({onClose} : {onClose: any}) => {
   const [attempts, setAttempts] = useState(12);
   const [status, setStatus] = useState("Next Time!");
   const [selectedGrade, setSelectedGrade] = useState("V7"); // State to store the selected grade
@@ -21,74 +29,86 @@ const AddClimb = () => {
     "V10",
   ];
 
+  const handleGradePress = () => {
+    console.log(
+      "INcrease the grade value by one on press. IF the max value reached reset to V0"
+    );
+  };
+
+  const handleAttemptsPress = () => {
+
+  };
+
+  const handleSuccessPress = () => {
+  };
+
+  const handlePhotoPress = () => {};
+
+  const handleNotesPress = () => {};
+
+  const menuItems = [
+    <MenuItem name={"Grade"} press={handleGradePress} content={<Text>{grades[0]}</Text>} />,
+    <MenuItem name={"Attemps"} press={handleAttemptsPress} content={<Text>{attempts}</Text>} />,
+    <MenuItem name={"Success"} press={handleSuccessPress} content={<Text>{status}</Text>} />,
+    <MenuItem name={"Photo"} press={handlePhotoPress} content={<Ionicons name="camera" size={16} color="black"/>} />,
+    <MenuItem name={"Notes"} press={handleNotesPress} content={<Ionicons name="book" size={16} color="black"/>} />
+  ];
+
   return (
-    <View className="border border-gray-300 rounded-lg p-4 bg-white ">
-      {/* Grade Picker */}
-      <View className="flex flex-row mt-5 justify-evenly items-center">
+    <Modal animationType="slide" transparent={true} visible={true}>
+      <View style={styles.modalContent}>
+        <View style={styles.titleContainer}>
+          <Text style={styles.title}>Log a new climb</Text>
+          <TouchableOpacity onPress={onClose}>
+            <Text>Close</Text>
+          </TouchableOpacity>
+        </View>
         <View>
-          <ScrollPicker
-            dataSource={grades}
-            selectedIndex={1}
-            wrapperHeight={100}
-            wrapperBackground="#FFFFFF"
-            itemHeight={60}
-            highlightColor="#d8d8d8"
-            highlightBorderWidth={1}
+          <FlatList
+            data={menuItems}
+            horizontal
+            contentContainerStyle={{
+                justifyContent: 'center',
+                alignItems: 'center',
+                paddingHorizontal: 10,
+              }}
+            renderItem={({ item, index }) => <View>{item}</View>}
           />
         </View>
-
-        {/* Attempts Button */}
-        <View className="items-center">
-          <Text className="text-center text-gray-500 font-semibold mb-2">
-            Attempts
-          </Text>
-          <TouchableOpacity
-            className="bg-purple-500 px-4 py-2 rounded-md"
-            onPress={() => setAttempts(attempts + 1)} // Increment attempts
-          >
-            <Text className="text-white text-lg font-bold">{attempts}</Text>
-          </TouchableOpacity>
-        </View>
-
-        {/* Emoji Button */}
-        <View className="items-center">
-          <TouchableOpacity
-            className={`px-4 py-2 rounded-md ${
-              status === "Success" ? "bg-green-500" : "bg-red-500"
-            }`}
-            onPress={() =>
-              setStatus((prevStatus) =>
-                prevStatus === "Next Time!" ? "Success" : "Next Time!"
-              )
-            }
-          >
-            <Text className="text-white text-lg font-bold">{status}</Text>
-          </TouchableOpacity>
-        </View>
       </View>
-
-      {/* Bottom Action Buttons */}
-      <View className="flex flex-row justify-evenly mt-6">
-        <View>
-          <TouchableOpacity>
-            <Ionicons name="camera" size={36} color="black" />
-          </TouchableOpacity>
-        </View>
-        <View>
-          <TouchableOpacity>
-            <Ionicons name="pencil" size={36} color="black" />
-          </TouchableOpacity>
-        </View>
-      </View>
-
-      {/* Save Button */}
-      <View className="flex flex-row justify-center mt-6">
-        <TouchableOpacity className="bg-purple-500 px-6 py-2 rounded-lg">
-          <Text className="text-white text-lg font-bold">Save</Text>
-        </TouchableOpacity>
-      </View>
-    </View>
+    </Modal>
   );
 };
 
 export default AddClimb;
+
+const styles = StyleSheet.create({
+  modalContent: {
+    height: "25%",
+    width: "100%",
+    backgroundColor: "#25292e",
+    borderTopRightRadius: 18,
+    borderTopLeftRadius: 18,
+    position: "absolute",
+    bottom: 0,
+  },
+  titleContainer: {
+    height: "16%",
+    backgroundColor: "#464C55",
+    borderTopRightRadius: 10,
+    borderTopLeftRadius: 10,
+    paddingHorizontal: 20,
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-between",
+  },
+  title: {
+    color: "#fff",
+    fontSize: 16,
+  },
+  image: {
+    width: 100,
+    height: 100,
+    marginRight: 20,
+  },
+});
