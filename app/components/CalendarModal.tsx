@@ -32,14 +32,14 @@ const CalendarModal = ({setSelectedDay, setIsCalendarModalOpen}: {setSelectedDay
             '2025-01-01': { selected: true, selectedColor: '#4CAF50' }, // Example marking
           }}
           theme={{
-            todayTextColor: '#4CAF50', // Today's date color
-            selectedDayBackgroundColor: '#4CAF50', // Selected day background
+            todayTextColor: '#A855F7', // Today's date color
+            selectedDayBackgroundColor: '#A855F7', // Selected day background
             selectedDayTextColor: '#fff', // Selected day text color
-            arrowColor: '#4CAF50', // Arrow color for navigation
+            arrowColor: '#A855F7', // Arrow color for navigation
             monthTextColor: '#333', // Month text color
-            textDayFontFamily: 'Arial', // Font for day texts
-            textMonthFontFamily: 'Arial', // Font for month name
-            textDayHeaderFontFamily: 'Arial', // Font for weekday headers
+            textDayFontFamily: 'Futura', // Font for day texts
+            textMonthFontFamily: 'Futura', // Font for month name
+            textDayHeaderFontFamily: 'Futura', // Font for weekday headers
             textMonthFontWeight: 'bold', // Month name bold text
           }}
         />

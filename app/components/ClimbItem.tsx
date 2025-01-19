@@ -1,6 +1,7 @@
 import { View, Text, TouchableOpacity } from "react-native";
-import React from "react";
+import React, { useState } from "react";
 import Ionicons from "@expo/vector-icons/Ionicons";
+import ClimbModal from "../modals/ClimbModal";
 
 const ClimbItem = ({
   grade,
@@ -11,13 +12,17 @@ const ClimbItem = ({
   attempts: number;
   success: boolean;
 }) => {
+  const [modalVisible, setModalVisible] = useState(false);
   return (
     <View
       className={`border rounded-lg p-4 mb-2 ${
         success ? "border-successGreen-100" : "border-red-500"
       }`}
     >
-      <TouchableOpacity className="flex flex-row justify-evenly items-center">
+      <TouchableOpacity
+        className="flex flex-row justify-evenly items-center"
+        onPress={() => setModalVisible(true)}
+      >
         <View className="flex flex-row">
           <Text className="text-lg  text-black">Grade: </Text>
           <Text className="text-lg font-bold text-black">{grade}</Text>
@@ -30,10 +35,12 @@ const ClimbItem = ({
             {attempts}
           </Text>
         </View>
-        <TouchableOpacity >
+        <TouchableOpacity>
           <Ionicons name="close" size={24} color="black" />
         </TouchableOpacity>
       </TouchableOpacity>
+
+      <View>{modalVisible ? <ClimbModal climbId="1" /> : null}</View>
     </View>
   );
 };

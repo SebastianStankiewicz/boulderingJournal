@@ -4,7 +4,7 @@ import { SafeAreaView } from 'react-native-safe-area-context'
 
 const stats = () => {
   return (
-    <SafeAreaView className="h-full bg-white">
+    <SafeAreaView className="h-full bg-primary-100">
       <ScrollView showsVerticalScrollIndicator={false}
       contentContainerClassName="pb-32 px-7"
       >
