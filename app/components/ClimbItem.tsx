@@ -12,7 +12,7 @@ const ClimbItem = ({
   attempts: number;
   success: boolean;
 }) => {
-  const [modalVisible, setModalVisible] = useState(false);
+  const [modalVisible, setModalVisible] = useState<boolean>(false);
   return (
     <View
       className={`border rounded-lg p-4 mb-2 ${
@@ -40,7 +40,7 @@ const ClimbItem = ({
         </TouchableOpacity>
       </TouchableOpacity>
 
-      <View>{modalVisible ? <ClimbModal climbId="1" /> : null}</View>
+      <View>{modalVisible ? <ClimbModal climbId="1" onClose={() => setModalVisible(false)} /> : null}</View>
     </View>
   );
 };
