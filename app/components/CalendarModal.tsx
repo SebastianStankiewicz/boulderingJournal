@@ -8,7 +8,7 @@ const CalendarModal = ({setSelectedDay, setIsCalendarModalOpen}: {setSelectedDay
       <SafeAreaView className="flex-1 bg-primary-400 p-4">
         {/* Modal Header */}
         <View className="mb-4">
-          <Text className="text-2xl font-bold text-black text-center">
+          <Text className="text-2xl font-bold font-futura text-black text-center">
             Select a Date
           </Text>
         </View>
@@ -44,7 +44,7 @@ const CalendarModal = ({setSelectedDay, setIsCalendarModalOpen}: {setSelectedDay
           }}
         />
         <View className="mt-2 px-5">
-        <Text className="text-3xl font-bold text-black-900">
+        <Text className="text-3xl font-bold font-futura text-black-900">
             Month Overview
           </Text>
         </View>

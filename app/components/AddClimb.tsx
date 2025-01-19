@@ -10,11 +10,15 @@ import React, { useState } from "react";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import ScrollPicker from "react-native-wheel-scrollview-picker";
 import MenuItem from "./addClimbComponents/MenuItem";
+import TagPill from "./TagPill";
 
-const AddClimb = ({onClose} : {onClose: any}) => {
+const AddClimb = ({ onClose }: { onClose: any }) => {
   const [attempts, setAttempts] = useState(12);
   const [status, setStatus] = useState("Next Time!");
-  const [selectedGrade, setSelectedGrade] = useState("V7"); // State to store the selected grade
+  const [selectedGrade, setSelectedGrade] = useState("V7");
+
+  const [notesOpen, setNotesOpen] = useState<boolean>(false);
+
   const grades = [
     "V0",
     "V1",
@@ -35,46 +39,97 @@ const AddClimb = ({onClose} : {onClose: any}) => {
     );
   };
 
-  const handleAttemptsPress = () => {
+  const handleAttemptsPress = () => {};
 
-  };
-
-  const handleSuccessPress = () => {
-  };
+  const handleSuccessPress = () => {};
 
   const handlePhotoPress = () => {};
 
-  const handleNotesPress = () => {};
+  const handleNotesPress = () => {
+    setNotesOpen(true);
+  };
+
+  const tags = ["Pinch", "Crimp", "Sloper", "Jug", "Dyno", "Add Tag"];
 
   const menuItems = [
-    <MenuItem name={"Grade"} press={handleGradePress} content={<Text>{grades[0]}</Text>} />,
-    <MenuItem name={"Attemps"} press={handleAttemptsPress} content={<Text>{attempts}</Text>} />,
-    <MenuItem name={"Success"} press={handleSuccessPress} content={<Text>{status}</Text>} />,
-    <MenuItem name={"Photo"} press={handlePhotoPress} content={<Ionicons name="camera" size={16} color="black"/>} />,
-    <MenuItem name={"Notes"} press={handleNotesPress} content={<Ionicons name="book" size={16} color="black"/>} />
+    <MenuItem
+      name={"Grade"}
+      press={handleGradePress}
+      content={<Text>{grades[0]}</Text>}
+    />,
+    <MenuItem
+      name={"Attemps"}
+      press={handleAttemptsPress}
+      content={<Text>{attempts}</Text>}
+    />,
+    <MenuItem
+      name={"Success"}
+      press={handleSuccessPress}
+      content={<Text>{status}</Text>}
+    />,
+    <MenuItem
+      name={"Photo"}
+      press={handlePhotoPress}
+      content={<Ionicons name="camera" size={16} color="black" />}
+    />,
+    <MenuItem
+      name={"Notes"}
+      press={handleNotesPress}
+      content={<Ionicons name="book" size={16} color="black" />}
+    />,
   ];
 
   return (
     <Modal animationType="slide" transparent={true} visible={true}>
       <View style={styles.modalContent}>
         <View style={styles.titleContainer}>
-          <Text style={styles.title}>Log a new climb</Text>
+          <Text className="font-futura">Log a new climb</Text>
           <TouchableOpacity onPress={onClose}>
-            <Text>Close</Text>
+            <Text className="font-futura">Close</Text>
           </TouchableOpacity>
         </View>
-        <View>
-          <FlatList
-            data={menuItems}
-            horizontal
-            contentContainerStyle={{
-                justifyContent: 'center',
-                alignItems: 'center',
-                paddingHorizontal: 10,
-              }}
-            renderItem={({ item, index }) => <View>{item}</View>}
-          />
-        </View>
+
+        {!notesOpen ? (
+          <View>
+            <View className="mt-5">
+              <FlatList
+                data={menuItems}
+                horizontal
+                contentContainerStyle={{
+                  justifyContent: "center",
+                  alignItems: "center",
+                  paddingHorizontal: 10,
+                }}
+                showsHorizontalScrollIndicator={false}
+                renderItem={({ item, index }) => <View>{item}</View>}
+              />
+            </View>
+            <View className="mt-2">
+              <FlatList
+                data={tags}
+                horizontal
+                contentContainerStyle={{
+                  justifyContent: "center",
+                  alignItems: "center",
+                  paddingHorizontal: 10,
+                }}
+                showsHorizontalScrollIndicator={false}
+                renderItem={({ item, index }) => (
+                  <TagPill key={index} label={item} />
+                )}
+              />
+            </View>
+          </View>
+        ) : (
+          <View>
+            <View>
+              <Text className="font-futura text-white">
+                Add an editable note secton here
+              </Text>
+            </View>
+            <Text className="font-futura text-white bg-purple-600 text-3xl py-2 px-4 rounded-lg shadow-md ">Save</Text>
+          </View>
+        )}
       </View>
     </Modal>
   );
@@ -84,7 +139,7 @@ export default AddClimb;
 
 const styles = StyleSheet.create({
   modalContent: {
-    height: "25%",
+    height: "40%",
     width: "100%",
     backgroundColor: "#25292e",
     borderTopRightRadius: 18,

@@ -113,15 +113,9 @@ export default function Index() {
           </TouchableOpacity>
         ) : (
           // AddClimb Component
-          <View className="bg-white p-4 rounded-lg shadow-lg">
+          <View>
             <AddClimb onClose={() => setIsAddClimbOpen(false)} />
-            {/* Close Button */}
-            <TouchableOpacity
-              className="absolute top-2 right-2 bg-gray-200 rounded-full p-2"
-              onPress={() => setIsAddClimbOpen(false)}
-            >
-              <Ionicons name="close" size={24} color="black" />
-            </TouchableOpacity>
+
           </View>
         )}
       </View>
