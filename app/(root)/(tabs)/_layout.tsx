@@ -44,15 +44,15 @@ const TabsLayout = () => {
       }}
     >
       <Tabs.Screen
-        name="calendar"
+        name="workouts"
         options={{
-          title: "Calendar",
+          title: "workouts",
           headerShown: false,
           tabBarIcon: ({ focused }) => (
             <TabIcon
-              iconName="calendar-outline"
+              iconName="barbell"
               focused={focused}
-              title="Progress"
+              title="workouts"
             />
           ),
         }}
